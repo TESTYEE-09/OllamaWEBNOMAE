@@ -28,6 +28,8 @@ jobs:
       - run: rm -rf src/app/api
       - run: npm run export
       - uses: actions/configure-pages@v4
+        with:
+          domain: nomaebot.site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
