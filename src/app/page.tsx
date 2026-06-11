@@ -1,5 +1,10 @@
-import { redirect } from 'next/navigation';
+'use client';
+
+import { useEffect } from 'react';
 
 export default function Home() {
-  redirect('/chat');
+  useEffect(() => {
+    window.location.replace('/chat');
+  }, []);
+  return null;
 }

@@ -72,8 +72,8 @@ export default function ChatPage() {
     try {
       const res = await fetch('/api/conversations');
       if (res.status === 401) { router.push('/login'); return; }
-      setConversations(await res.json());
-    } catch { router.push('/login'); }
+      if (res.ok) setConversations(await res.json());
+    } catch { /* API not available */ }
   }
 
   async function loadConversation(id: string) {
