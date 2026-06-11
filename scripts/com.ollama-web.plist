@@ -16,8 +16,8 @@
   <dict>
     <key>NODE_ENV</key>
     <string>development</string>
-    <key>OLLAMA_API_KEY</key>
-    <string>__OLLAMA_API_KEY__</string>
+    <key>OPENROUTER_API_KEY</key>
+    <string>__OPENROUTER_API_KEY__</string>
     <key>ADMIN_USERNAME</key>
     <string>admin</string>
     <key>ADMIN_PASSWORD_HASH</key>

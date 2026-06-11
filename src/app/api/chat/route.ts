@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { currentUserId } from '@/lib/auth';
 import { v4 as uuidv4 } from 'uuid';
 import { createConversation, createMessage, getConversation, updateConversation, getMessages } from '@/lib/db';
-import { streamChat } from '@/lib/ollama';
+import { streamChat } from '@/lib/openrouter';
 
 function isHtmlLike(content: string): boolean {
   const cleaned = content.replace(/```[a-z]*\n?/g, '').replace(/```$/g, '').trimStart();
@@ -15,13 +15,13 @@ export async function POST(req: NextRequest) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
   }
 
-  const { conversation_id, message, model_id, thinking } = await req.json();
+  const { conversation_id, message, model_id } = await req.json();
 
   let convId = conversation_id;
   if (!convId) {
     convId = uuidv4();
     const title = message.content?.slice(0, 40) || 'New Chat';
-    createConversation(convId, userId, title, model_id || 'minimax-m3', thinking || 'off');
+    createConversation(convId, userId, title, model_id || 'nex-agi/nex-n2-pro:free', 'off');
   } else {
     const conv = getConversation(convId, userId);
     if (!conv) return new Response(JSON.stringify({ error: 'Not found' }), { status: 404 });
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
   }
 
   const history = getMessages(convId);
-  const ollamaMessages = history.map((m: any) => ({
+  const openrouterMessages = history.map((m: any) => ({
     role: m.role as 'system' | 'user' | 'assistant',
     content: m.content,
     ...(m.images_json ? { images: JSON.parse(m.images_json) } : {}),
@@ -52,9 +52,8 @@ export async function POST(req: NextRequest) {
 
       try {
         for await (const chunk of streamChat({
-          model: model_id || 'minimax-m3',
-          messages: ollamaMessages,
-          thinking: thinking || 'off',
+          model: model_id || 'nex-agi/nex-n2-pro:free',
+          messages: openrouterMessages,
         })) {
           if (chunk.type === 'content') {
             fullContent += chunk.delta;
@@ -63,14 +62,10 @@ export async function POST(req: NextRequest) {
               canvasHtml = candidate;
             }
             controller.enqueue(encoder.encode(`data: ${JSON.stringify({ type: 'content', delta: chunk.delta, canvasHtml: canvasHtml ? candidate : undefined })}\n\n`));
-          } else if (chunk.type === 'thinking') {
-            fullThinking += chunk.delta;
-            controller.enqueue(encoder.encode(`data: ${JSON.stringify({ type: 'thinking', delta: chunk.delta })}\n\n`));
           } else if (chunk.type === 'done') {
             const assistantMsgId = uuidv4();
             createMessage(assistantMsgId, convId, 'assistant', fullContent, {
-              model_id: model_id || 'minimax-m3',
-              thinking: fullThinking || undefined,
+              model_id: model_id || 'nex-agi/nex-n2-pro:free',
             });
             controller.enqueue(encoder.encode(`data: ${JSON.stringify({ type: 'done', conversation_id: convId, message_id: assistantMsgId })}\n\n`));
           }

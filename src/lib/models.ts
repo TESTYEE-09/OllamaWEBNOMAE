@@ -1,11 +1,8 @@
-export type ThinkingLevel = 'off' | 'low' | 'medium' | 'high';
-
 export type ModelEntry = {
   id: string;
   label: string;
   tier: 'quick' | 'pro';
   vision: boolean;
-  supportsThink: boolean;
   description: string;
   contextWindow: number;
   badge?: string;
@@ -13,55 +10,53 @@ export type ModelEntry = {
 
 export const MODELS: ModelEntry[] = [
   {
-    id: 'minimax-m3',
-    label: 'M3',
+    id: 'nex-agi/nex-n2-pro:free',
+    label: 'Nex N2 Pro',
     tier: 'quick',
     vision: false,
-    supportsThink: true,
-    description: 'Newest flagship. Smart + fast. Default for quick.',
+    description: 'Smart free model. Default.',
     contextWindow: 128_000,
-    badge: 'NEW',
+    badge: 'FREE',
   },
   {
-    id: 'gemma4:31b',
-    label: 'Gemma 4 31B',
-    tier: 'quick',
-    vision: true,
-    supportsThink: false,
-    description: 'Cloud vision. Best for images, PDFs, OCR.',
-    contextWindow: 128_000,
-    badge: 'CLOUD',
-  },
-  {
-    id: 'gemini-3-flash-preview',
-    label: 'Gemini 3 Flash',
-    tier: 'quick',
-    vision: true,
-    supportsThink: false,
-    description: 'Fastest with vision. Great for quick answers.',
-    contextWindow: 1_000_000,
-  },
-  {
-    id: 'qwen3-vl:235b-instruct',
-    label: 'Qwen3 VL 235B',
-    tier: 'quick',
-    vision: true,
-    supportsThink: false,
-    description: 'Best vision model. Complex images, diagrams, PDFs.',
-    contextWindow: 256_000,
-  },
-  {
-    id: 'gpt-oss:20b',
-    label: 'GPT-OSS 20B',
+    id: 'google/gemma-3-27b-it:free',
+    label: 'Gemma 3 27B',
     tier: 'quick',
     vision: false,
-    supportsThink: true,
-    description: 'OpenAI open-weight with thinking. Fast + smart.',
+    description: 'Google open model, strong for its size.',
+    contextWindow: 32_000,
+    badge: 'FREE',
+  },
+  {
+    id: 'meta-llama/llama-3.2-3b-instruct:free',
+    label: 'Llama 3.2 3B',
+    tier: 'quick',
+    vision: false,
+    description: 'Lightning fast, good for simple tasks.',
     contextWindow: 128_000,
+    badge: 'FREE',
+  },
+  {
+    id: 'microsoft/phi-3-medium-4k-instruct:free',
+    label: 'Phi-3 Medium',
+    tier: 'quick',
+    vision: false,
+    description: 'Microsoft small model, efficient.',
+    contextWindow: 4_000,
+    badge: 'FREE',
+  },
+  {
+    id: 'mistralai/mistral-7b-instruct:free',
+    label: 'Mistral 7B',
+    tier: 'pro',
+    vision: false,
+    description: 'Strong 7B model from Mistral.',
+    contextWindow: 32_000,
+    badge: 'FREE',
   },
 ];
 
-export const DEFAULT_MODEL_ID = 'minimax-m3';
+export const DEFAULT_MODEL_ID = 'nex-agi/nex-n2-pro:free';
 
 export function getModel(id: string): ModelEntry {
   return MODELS.find((m) => m.id === id) ?? MODELS[0];

@@ -20,7 +20,7 @@ function ask(query: string): Promise<string> {
 async function main() {
   console.log('Ollama Web Bootstrap\n');
 
-  const ollamaKey = await ask('Enter your Ollama API key: ');
+  const apiKey = await ask('Enter your OpenRouter API key: ');
   const username = await ask('Admin username (default: admin): ') || 'admin';
   const password = await ask('Admin password: ');
 
@@ -28,7 +28,7 @@ async function main() {
   const passwordHash = await bcrypt.hash(password, 10);
   const sessionSecret = randomBytes(32).toString('hex');
 
-  const envContent = `OLLAMA_API_KEY=${ollamaKey}
+  const envContent = `OPENROUTER_API_KEY=${apiKey}
 ADMIN_USERNAME=${username}
 ADMIN_PASSWORD_HASH=${passwordHash}
 SESSION_SECRET=${sessionSecret}

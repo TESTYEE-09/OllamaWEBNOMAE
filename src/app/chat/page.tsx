@@ -42,7 +42,7 @@ export default function ChatPage() {
   const [input, setInput] = useState('');
   const [streaming, setStreaming] = useState(false);
   const [models, setModels] = useState<ModelEntry[]>([]);
-  const [selectedModel, setSelectedModel] = useState('minimax-m3');
+  const [selectedModel, setSelectedModel] = useState('nex-agi/nex-n2-pro:free');
   const [thinkingLevel, setThinkingLevel] = useState<string>('off');
   const [canvasHtml, setCanvasHtml] = useState<string | null>(null);
   const [canvasOpen, setCanvasOpen] = useState(false);
@@ -229,8 +229,7 @@ export default function ChatPage() {
   const selectedModelEntry = models.find(m => m.id === selectedModel);
 
   function getModelBadgeStyle(badge?: string) {
-    if (badge === 'NEW') return { background: '#10b981', color: 'white', fontSize: 10, padding: '2px 6px', borderRadius: 8, fontWeight: 600 };
-    if (badge === 'CLOUD') return { background: '#3b82f6', color: 'white', fontSize: 10, padding: '2px 6px', borderRadius: 8, fontWeight: 600 };
+    if (badge === 'FREE') return { background: '#10b981', color: 'white', fontSize: 10, padding: '2px 6px', borderRadius: 8, fontWeight: 600 };
     return {};
   }
 
