@@ -18,7 +18,7 @@ function ask(query: string): Promise<string> {
 }
 
 async function main() {
-  console.log('Ollama Web Bootstrap\n');
+  console.log('nomaebot NEW Bootstrap\n');
 
   const apiKey = await ask('Enter your OpenRouter API key: ');
   const username = await ask('Admin username (default: admin): ') || 'admin';
@@ -37,7 +37,7 @@ SESSION_SECRET=${sessionSecret}
   const envPath = path.join(process.cwd(), '.env');
   fs.writeFileSync(envPath, envContent);
   console.log(`\n.env written to ${envPath}`);
-  console.log('You can now run: ./scripts/start.sh');
+  console.log('Run ./scripts/start.sh to start nomaebot NEW');
 
   rl.close();
 }

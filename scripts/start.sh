@@ -1,4 +1,4 @@
-# Start Ollama Web Chat
+# Start nomaebot NEW
 # Usage: ./scripts/start.sh
 
 export NODE_ENV=development

@@ -31,7 +31,7 @@ export default function LoginPage() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-primary)' }}>
       <form onSubmit={handleSubmit} style={{ background: 'var(--bg-secondary)', padding: 32, borderRadius: 12, width: 360 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: 24, textAlign: 'center' }}>Ollama Web</h1>
+        <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: 24, textAlign: 'center' }}>nomaebot NEW</h1>
         {error && (
           <div style={{ background: 'var(--danger)', color: 'white', padding: '8px 12px', borderRadius: 8, marginBottom: 16, fontSize: 14 }}>
             {error}

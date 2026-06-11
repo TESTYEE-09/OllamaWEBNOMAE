@@ -28,7 +28,7 @@ export async function* streamChat(params: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
       'HTTP-Referer': 'https://github.com/TESTYEE-09/OllamaWEBNOMAE',
-      'X-Title': 'Ollama Web',
+      'X-Title': 'nomaebot NEW',
     },
     body: JSON.stringify(body),
     signal: params.signal,
