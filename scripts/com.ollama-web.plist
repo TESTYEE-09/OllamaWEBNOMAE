@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.ollama-web</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/opt/node@24/bin/node</string>
+    <string>node_modules/next/dist/bin/next</string>
+    <string>start</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/nomae/Downloads/ollama-web</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>NODE_ENV</key>
+    <string>development</string>
+    <key>OLLAMA_API_KEY</key>
+    <string>__OLLAMA_API_KEY__</string>
+    <key>ADMIN_USERNAME</key>
+    <string>admin</string>
+    <key>ADMIN_PASSWORD_HASH</key>
+    <string>__ADMIN_PASSWORD_HASH__</string>
+    <key>SESSION_SECRET</key>
+    <string>__SESSION_SECRET__</string>
+  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>/tmp/ollama-web.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/ollama-web.log</string>
+</dict>
+</plist>
