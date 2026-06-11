@@ -34,6 +34,7 @@ saveSettingsBtn.addEventListener('click', saveSettings);
 
 async function loadSettings() {
   const res = await chrome.runtime.sendMessage({ type: 'get_settings' });
+  apiKeyInput.placeholder = res.apiKey ? 'Key configured ✓' : 'Enter API key';
   if (res.apiKey) apiKeyInput.value = res.apiKey;
 }
 

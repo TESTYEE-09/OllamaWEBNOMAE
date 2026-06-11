@@ -70,7 +70,7 @@ async function callAPI(messages, settings) {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${settings.apiKey}`,
-        'HTTP-Referer': 'https://nomaebot.site',
+      'HTTP-Referer': 'https://nomaebot.site',
       'X-Title': 'nomaebot NEW Extension',
     },
     body: JSON.stringify({
